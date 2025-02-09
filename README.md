@@ -52,3 +52,6 @@ export default tseslint.config({
 
 # Extension Documentation
 `npm install --save-dev @types/chrome`
+
+## Testing Environment
+`npx playwright install`

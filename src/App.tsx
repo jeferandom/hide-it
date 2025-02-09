@@ -1,11 +1,15 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 
-function App() {
+interface AppProps {
+  title: string;
+}
+
+function App({ title }: AppProps) {
   const [keywords, setKeywords] = useState<string[]>([]);
 
   useEffect(() => {
-    if (chrome.storage) {
+    if (chrome?.storage) {
       chrome.storage.local.get(['blockedKeywords'], function (result) {
         if (result.blockedKeywords) {
           setKeywords(result.blockedKeywords);
@@ -15,13 +19,13 @@ function App() {
   }, []);
 
   const updateKeywords = () => {
-    chrome.storage.local.set({ blockedKeywords: keywords });
+    chrome?.storage.local.set({ blockedKeywords: keywords });
   };
 
   return (
     <>
       <div>
-        <h2>Blocked Keywords</h2>
+        <h2>{title}</h2>
         <ul>
           {
             keywords.map(keyword => <li>{keyword}</li>)
