@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "hide it",
+  "version": "1.0.0",
+  "description": "A Chrome extension that hides unwanted elements on web pages based on specified keywords.",
+  "action": {
+    "default_popup": "index.html"
+  },
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting",
+    "nativeMessaging"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ]
+}
