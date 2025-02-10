@@ -19,7 +19,7 @@ function App({ title }: AppProps) {
   }, []);
 
   const updateKeywords = () => {
-    chrome?.storage.local.set({ blockedKeywords: keywords });
+    chrome?.storage?.local.set({ blockedKeywords: keywords });
   };
 
   return (
@@ -28,15 +28,21 @@ function App({ title }: AppProps) {
         <h2>{title}</h2>
         <ul>
           {
-            keywords.map(keyword => <li>{keyword}</li>)
+            keywords.map((keyword,i) => { 
+              return <li key={`${i}-keyword`}>{keyword}</li>
+            })
           }
         </ul>
-        <input
-          type="text"
-          value={keywords.join(', ')}
-          onChange={(e) => setKeywords(e.target.value.split(', '))}
-        />
-        <button onClick={updateKeywords}>Update Keywords</button>
+        <label>
+          <span>key-word</span>
+          <input
+            id="key-word"
+            type="text"
+            value={keywords.join(', ')}
+            onChange={(e) => setKeywords(e.target.value.split(', '))}
+          />
+        </label>
+        <button onClick={updateKeywords}>Save</button>
       </div>
     </>
   )
